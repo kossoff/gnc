@@ -81,3 +81,13 @@
 // @import "vendor/ie";
 
 @import "foundation-icons";
+
+body {
+  header {
+    background: lightgrey;
+  }
+
+  .breadcrumbs {
+    margin-top:.5rem;
+  }
+}
