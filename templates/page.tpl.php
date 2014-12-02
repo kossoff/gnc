@@ -125,10 +125,12 @@
 
         <?php if ($breadcrumb): print $breadcrumb; endif; ?>
 
-        <?php if ($title && !$is_front && $node->type != "patient"): ?>
-          <?php print render($title_prefix); ?>
-          <h2 id="page-title" class="title"><?php print $title; ?></h2>
-          <?php print render($title_suffix); ?>
+        <?php if (!isset($node)):?>
+          <?php if ($title && !$is_front): ?>
+            <?php print render($title_prefix); ?>
+            <h2 id="page-title" class="title"><?php print $title; ?></h2>
+            <?php print render($title_suffix); ?>
+          <?php endif; ?>
         <?php endif; ?>
 
         <?php if (!empty($tabs)): ?>
