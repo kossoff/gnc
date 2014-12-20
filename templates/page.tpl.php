@@ -220,7 +220,7 @@
 
     <?php if ($site_name) :?>
       <div class="copyright large-12 columns">
-        &copy; <?php print date('Y') . ' ' . check_plain($site_name) . ' ' . t('All rights reserved.'); ?>
+        &copy; 2014 <?php if ( date('Y') != 2014 ) print date('Y') . '&nbsp;&mdash; '; print check_plain($site_name) . ' ' . t('All rights reserved.'); ?>
       </div>
     <?php endif; ?>
   </div>
