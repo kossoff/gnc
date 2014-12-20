@@ -87,6 +87,12 @@
     hide($content['comments']);
     hide($content['links']);
     hide($content['field_tags']);
+    hide($content['field_view_diagnoses']);
+    hide($content['field_view_diaries']);
+    hide($content['field_view_ecgs']);
+    hide($content['field_view_directions']);
+    hide($content['field_view_summarys']);
+    hide($content['field_view_misc']);
     print render($content);
   ?>
 
@@ -109,35 +115,41 @@
   <div class="files">
     <dl class="tabs" data-tab>
       <dd class="active">
-        <a href="#panel1"><i class="fi-page-copy"></i>&nbsp;Диагнозы</a>
+        <a href="#diagnoses"><i class="fi-page-copy"></i>&nbsp;Диагнозы</a>
       </dd>
       <dd>
-        <a href="#panel2"><i class="fi-calendar"></i>&nbsp;Дневники</a></dd>
+        <a href="#diaries"><i class="fi-calendar"></i>&nbsp;Дневники</a></dd>
       <dd>
-        <a href="#panel3"><i class="fi-heart"></i>&nbsp;ЭКГ</a>
+        <a href="#ecgs"><i class="fi-heart"></i>&nbsp;ЭКГ</a>
       </dd>
       <dd>
-        <a href="#panel4"><i class="fi-arrows-out"></i>&nbsp;Направления</a>
+        <a href="#directions"><i class="fi-arrows-out"></i>&nbsp;Направления</a>
       </dd>
       <dd>
-        <a href="#panel4"><i class="fi-page-multiple"></i>&nbsp;Эпикризы&Осмотры</a>
+        <a href="#summarys"><i class="fi-page-multiple"></i>&nbsp;Эпикризы&Осмотры</a>
       </dd>
       <dd>
-        <a href="#panel4"><i class="fi-asterisk"></i>&nbsp;Разное</a>
+        <a href="#misc"><i class="fi-asterisk"></i>&nbsp;Разное</a>
       </dd>
     </dl>
     <div class="tabs-content">
-      <div class="content active" id="panel1">
-        <p>This is the first panel of the basic tab example. This is the first panel of the basic tab example.</p>
+      <div class="content active" id="diagnoses">
+        <?php print render($content['field_view_diagnoses']); ?>
       </div>
-      <div class="content" id="panel2">
-        <p>This is the second panel of the basic tab example. This is the second panel of the basic tab example.</p>
+      <div class="content" id="diaries">
+        <?php print render($content['field_view_diaries']); ?>
       </div>
-      <div class="content" id="panel3">
-        <p>This is the third panel of the basic tab example. This is the third panel of the basic tab example.</p>
+      <div class="content" id="ecgs">
+        <?php print render($content['field_view_ecgs']); ?>
       </div>
-      <div class="content" id="panel4">
-        <p>This is the fourth panel of the basic tab example. This is the fourth panel of the basic tab example.</p>
+      <div class="content" id="directions">
+        <?php print render($content['field_view_directions']); ?>
+      </div>
+      <div class="content" id="summarys">
+        <?php print render($content['field_view_summarys']); ?>
+      </div>
+      <div class="content" id="misc">
+        <?php print render($content['field_view_misc']); ?>
       </div>
     </div>
   </div>
