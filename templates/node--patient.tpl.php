@@ -78,6 +78,8 @@
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
 
   <?php
+    $droplink = '?field_patient_reference=' . $node->nid . '&destination=/node/' . $node->nid;
+
     // We hide the comments and links now so that we can render them later.
     hide($content['field_surname']);
     hide($content['field_name']);
@@ -96,20 +98,33 @@
     print render($content);
   ?>
 
-  <div class="panel patient-info">
-    <?php if ($display_submitted): ?>
-      <div class="posted">
-        <?php if ($user_picture): ?>
-          <?php print $user_picture; ?>
-        <?php endif; ?>
-        <?php print $submitted; ?>
-      </div>
-    <?php endif; ?>
-    <?php print render($title_prefix); ?>
-      <h2<?php print $title_attributes; ?>><?php if (!$page): ?><a href="<?php print $node_url; ?>"><?php endif; ?><i class="fi-torso"></i>&nbsp;<?php print $title; ?><?php if (!$page): ?></a><?php endif; ?></h2>
-    <?php print render($title_suffix); ?>
-    <p></p>
-    <p>И/б № <?php print $node->field_medical_history_number['und'][0]['value']; ?></p>
+  <div class="panel patient-info clearfix">
+    <div class="left">
+      <?php if ($display_submitted): ?>
+        <div class="posted">
+          <?php if ($user_picture): ?>
+            <?php print $user_picture; ?>
+          <?php endif; ?>
+          <?php print $submitted; ?>
+        </div>
+      <?php endif; ?>
+      <?php print render($title_prefix); ?>
+        <h2<?php print $title_attributes; ?>><?php if (!$page): ?><a href="<?php print $node_url; ?>"><?php endif; ?><i class="fi-torso"></i>&nbsp;<?php print $title; ?><?php if (!$page): ?></a><?php endif; ?></h2>
+      <?php print render($title_suffix); ?>
+      <p></p>
+      <p>И/б № <?php print $node->field_medical_history_number['und'][0]['value']; ?></p>
+    </div>
+    <div class="right">
+      <a href="#" class="button small right" data-dropdown="drop"><i class="fi-plus"></i> Добавить</a>
+      <ul id="drop" class="tiny f-dropdown" data-dropdown-content="">
+        <li><a href="/node/add/diagnosis<?php print $droplink; ?>"><i class="fi-page-copy"></i>&nbsp;Диагноз</a></li>
+        <li><a href="/node/add/diary<?php print $droplink; ?>"><i class="fi-calendar"></i>&nbsp;Дневник</a></li>
+        <li><a href="/node/add/ecg<?php print $droplink; ?>"><i class="fi-heart"></i>&nbsp;ЭКГ</a></li>
+        <li><a href="/node/add/direction<?php print $droplink; ?>"><i class="fi-arrows-out"></i>&nbsp;Направление</a></li>
+        <li><a href="/node/add/summary-inspection<?php print $droplink; ?>"><i class="fi-page-multiple"></i>&nbsp;Эпикриз/Осмотр</a></li>
+        <li><a href="/node/add/miscellaneous<?php print $droplink; ?>"><i class="fi-asterisk"></i>&nbsp;Разное</a></li>
+      </ul>
+    </div>
   </div>
 
   <div class="files">
