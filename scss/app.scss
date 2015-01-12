@@ -81,6 +81,7 @@
 // @import "vendor/ie";
 
 @import "foundation-icons";
+@import "entityconnect";
 
 body {
   header {
@@ -89,5 +90,16 @@ body {
 
   .breadcrumbs {
     margin-top:.5rem;
+  }
+
+  .form-type-radio,
+  .form-type-checkbox {
+    input {
+      margin:0;
+    }
+  }
+
+  .views-table {
+    width: 100%;
   }
 }

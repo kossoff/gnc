@@ -109,7 +109,17 @@
         </div>
       <?php endif; ?>
       <?php print render($title_prefix); ?>
-        <h2<?php print $title_attributes; ?>><?php if (!$page): ?><a href="<?php print $node_url; ?>"><?php endif; ?><i class="fi-torso"></i>&nbsp;<?php print $title; ?><?php if (!$page): ?></a><?php endif; ?></h2>
+        <h2<?php print $title_attributes; ?>>
+          <?php if (!$page): ?>
+            <a href="<?php print $node_url; ?>">
+          <?php endif; ?>
+          <i class="fi-torso"></i>
+          <?php print $node->field_surname['und'][0]['value'] . ' '
+            . $node->field_name['und'][0]['value'] . ' '
+            . $node->field_patronymic['und'][0]['value']; ?>
+          <?php if (!$page): ?>
+            </a>
+          <?php endif; ?></h2>
       <?php print render($title_suffix); ?>
       <p></p>
       <p>И/б № <?php print $node->field_medical_history_number['und'][0]['value']; ?></p>
