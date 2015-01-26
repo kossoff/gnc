@@ -121,7 +121,7 @@
             </a>
           <?php endif; ?></h2>
       <?php print render($title_suffix); ?>
-      <p></p>
+      <p>Возраст: <strong><?php print get_age($node->field_birthdate['und'][0]['value']); ?></strong> лет.</p>
       <p>И/б № <?php print $node->field_medical_history_number['und'][0]['value']; ?></p>
     </div>
     <div class="right">

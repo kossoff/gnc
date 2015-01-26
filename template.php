@@ -38,3 +38,12 @@ function gnc_form_alter(&$form, &$form_state, $form_id) {
   // $form['search']['#attributes']['class'][] = 'hide-for-touch';
   $form['submit']['#attributes']['class'][] = 'small';
 }
+
+function get_age($birthday) {
+  $birthday_timestamp = strtotime($birthday);
+  $age = date('Y') - date('Y', $birthday_timestamp);
+  if (date('md', $birthday_timestamp) > date('md')) {
+    $age--;
+  }
+  return $age;
+}
