@@ -39,11 +39,64 @@ function gnc_form_alter(&$form, &$form_state, $form_id) {
   $form['submit']['#attributes']['class'][] = 'small';
 }
 
-function get_age($birthday) {
+function gnc_field($variables) {
+  $output = '';
+
+  // Render the label, if it's not hidden.
+  if (!$variables['label_hidden']) {
+    $output .= '<div ' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</div>';
+  }
+
+  // Quick Edit module requires some extra wrappers to work.
+  if (module_exists('quickedit')) {
+    $output .= '<div class="field-items"' . $variables['content_attributes'] . '>';
+    foreach ($variables['items'] as $delta => $item) {
+      $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
+      $output .= '<div class="' . $classes . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</div>';
+    }
+    $output .= '</div>';
+  }
+  else {
+    $items_total = count($variables['items']);
+    $items_counter = 1;
+
+    foreach ($variables['items'] as $item) {
+      $output .= drupal_render($item);
+
+      if ($items_counter < $items_total){
+        $output .= ", ";
+        $items_counter++;
+      }
+    }
+  }
+
+  // Render the top-level DIV.
+  $output = '<span class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</span>';
+
+  return $output;
+}
+
+function get_age ( $birthday ) {
   $birthday_timestamp = strtotime($birthday);
+
   $age = date('Y') - date('Y', $birthday_timestamp);
+
   if (date('md', $birthday_timestamp) > date('md')) {
     $age--;
   }
+
+  return $age;
+}
+
+function get_age_at_date ( $birthday, $date ) {
+  $birthday_timestamp = strtotime($birthday);
+  $date_timestamp = strtotime($date);
+
+  $age = date('Y', $date_timestamp) - date('Y', $birthday_timestamp);
+
+  if (date('md', $birthday_timestamp) > date('md', $date_timestamp)) {
+    $age--;
+  }
+
   return $age;
 }
