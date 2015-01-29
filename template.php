@@ -92,7 +92,8 @@ function gnc_field__taxonomy_term_reference($variables) {
   $output .= '</span>';
 
   // Render the top-level DIV.
-  $output = '<span class="' . $variables['classes'] . (!in_array('clearfix', $variables['classes_array']) ? ' clearfix' : '') . '">' . $output . '</span>';
+  // $output = '<span class="' . $variables['classes'] . (!in_array('clearfix', $variables['classes_array']) ? ' clearfix' : '') . '">' . $output . '</span>';
+  $output = '<span class="' . $variables['classes'] . '">' . $output . '</span>';
 
   return $output;
 }
