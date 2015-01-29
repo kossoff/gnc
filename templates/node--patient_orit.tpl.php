@@ -95,7 +95,6 @@
     hide($content['field_view_directions']);
     hide($content['field_view_summarys']);
     hide($content['field_view_misc']);
-    print render($content);
   ?>
 
   <div class="panel patient-info clearfix">
@@ -121,63 +120,77 @@
             </a>
           <?php endif; ?></h2>
       <?php print render($title_suffix); ?>
-      <p>Возраст: <strong><?php print get_age($node->field_birthdate['und'][0]['value']); ?></strong> лет.</p>
-      <p>И/б № <?php print $node->field_medical_history_number['und'][0]['value']; ?></p>
+      <div class="age">Возраст: <strong><?php print get_age($node->field_birthdate['und'][0]['value']); ?></strong> лет.
+        <?php print render($content['field_birthdate']); ?>
+      </div>
+      <div class="diagnosis">Диагноз: <?php print render($content['field_hospitalization_diagnosis']); ?></div>
+      <div class="ib-num">И/б № <strong><?php print $node->field_medical_history_number['und'][0]['value']; ?></strong></div>
     </div>
-    <div class="right">
-      <a href="#" class="button small right" data-dropdown="drop"><i class="fi-plus"></i> Добавить</a>
-      <ul id="drop" class="tiny f-dropdown" data-dropdown-content="">
-        <li><a href="/node/add/diagnosis<?php print $droplink; ?>"><i class="fi-page-copy"></i>&nbsp;Диагноз</a></li>
-        <li><a href="/node/add/diary<?php print $droplink; ?>"><i class="fi-calendar"></i>&nbsp;Дневник</a></li>
-        <li><a href="/node/add/ecg<?php print $droplink; ?>"><i class="fi-heart"></i>&nbsp;ЭКГ</a></li>
-        <li><a href="/node/add/direction<?php print $droplink; ?>"><i class="fi-arrows-out"></i>&nbsp;Направление</a></li>
-        <li><a href="/node/add/summary-inspection<?php print $droplink; ?>"><i class="fi-page-multiple"></i>&nbsp;Эпикриз/Осмотр</a></li>
-        <li><a href="/node/add/miscellaneous<?php print $droplink; ?>"><i class="fi-asterisk"></i>&nbsp;Разное</a></li>
-      </ul>
-    </div>
+    <ul class="button-group right">
+      <li><a href="#" class="button small secondary"><i class="fi-arrows-out"></i>&nbsp;Направления</a></li>
+      <li>
+        <a href="#" class="button small right" data-dropdown="drop"><i class="fi-plus"></i> Добавить</a>
+        <ul id="drop" class="tiny f-dropdown" data-dropdown-content="">
+          <li><a href="/node/add/diagnosis<?php print $droplink; ?>"><i class="fi-page-copy"></i>&nbsp;Диагноз</a></li>
+          <li><a href="/node/add/diary<?php print $droplink; ?>"><i class="fi-calendar"></i>&nbsp;Дневник</a></li>
+          <li><a href="/node/add/ecg<?php print $droplink; ?>"><i class="fi-heart"></i>&nbsp;ЭКГ</a></li>
+          <li><a href="/node/add/summary-inspection<?php print $droplink; ?>"><i class="fi-page-multiple"></i>&nbsp;Эпикриз/Осмотр</a></li>
+          <li><a href="/node/add/miscellaneous<?php print $droplink; ?>"><i class="fi-asterisk"></i>&nbsp;Разное</a></li>
+          <li><a href="/node/add/catheterization<?php print $droplink; ?>"><i class="fi-first-aid"></i>&nbsp;Катетеризация</a></li>
+          <li><a href="/node/add/bronchoscopy<?php print $droplink; ?>"><i class="fi-magnifying-glass"></i>&nbsp;Бронхоскопия</a></li>
+        </ul>
+      </li>
+    </ul>
   </div>
 
   <div class="files">
-    <dl class="tabs" data-tab>
-      <dd class="active">
+    <dl class="accordion" data-accordion>
+      <dd class="accordion-navigation">
         <a href="#diagnoses"><i class="fi-page-copy"></i>&nbsp;Диагнозы</a>
+        <div class="content" id="diagnoses">
+          <?php print render($content['field_view_diagnoses']); ?>
+        </div>
       </dd>
       <dd>
-        <a href="#diaries"><i class="fi-calendar"></i>&nbsp;Дневники</a></dd>
-      <dd>
-        <a href="#ecgs"><i class="fi-heart"></i>&nbsp;ЭКГ</a>
-      </dd>
-      <dd>
-        <a href="#directions"><i class="fi-arrows-out"></i>&nbsp;Направления</a>
+        <a href="#diaries"><i class="fi-calendar"></i>&nbsp;Дневники</a>
+        <div class="content" id="diaries">
+          <?php print render($content['field_view_diaries']); ?>
+        </div>
       </dd>
       <dd>
         <a href="#summarys"><i class="fi-page-multiple"></i>&nbsp;Эпикризы&Осмотры</a>
+        <div class="content" id="summarys">
+          <?php print render($content['field_view_summarys']); ?>
+        </div>
+      </dd>
+      <dd>
+        <a href="#ecgs"><i class="fi-heart"></i>&nbsp;ЭКГ</a>
+        <div class="content" id="ecgs">
+          <?php print render($content['field_view_ecgs']); ?>
+        </div>
+      </dd>
+      <dd>
+        <a href="#broncho"><i class="fi-magnifying-glass"></i>&nbsp;Бронхоскопии</a>
+        <div class="content" id="broncho">
+          <?php print render($content['field_view_broncho']); ?>
+        </div>
+      </dd>
+      <dd>
+        <a href="#cateter"><i class="fi-first-aid"></i>&nbsp;Катетеризации</a>
+        <div class="content" id="cateter">
+          <?php print render($content['field_view_katet']); ?>
+        </div>
       </dd>
       <dd>
         <a href="#misc"><i class="fi-asterisk"></i>&nbsp;Разное</a>
+        <div class="content" id="misc">
+          <?php print render($content['field_view_misc']); ?>
+        </div>
       </dd>
     </dl>
-    <div class="tabs-content">
-      <div class="content active" id="diagnoses">
-        <?php print render($content['field_view_diagnoses']); ?>
-      </div>
-      <div class="content" id="diaries">
-        <?php print render($content['field_view_diaries']); ?>
-      </div>
-      <div class="content" id="ecgs">
-        <?php print render($content['field_view_ecgs']); ?>
-      </div>
-      <div class="content" id="directions">
-        <?php print render($content['field_view_directions']); ?>
-      </div>
-      <div class="content" id="summarys">
-        <?php print render($content['field_view_summarys']); ?>
-      </div>
-      <div class="content" id="misc">
-        <?php print render($content['field_view_misc']); ?>
-      </div>
-    </div>
   </div>
+
+  <?php print render($content); ?>
 
   <?php if (!empty($content['field_tags']) && !$is_front): ?>
     <?php print render($content['field_tags']) ?>
