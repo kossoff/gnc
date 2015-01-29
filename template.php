@@ -76,6 +76,27 @@ function gnc_field($variables) {
   return $output;
 }
 
+function gnc_field__taxonomy_term_reference($variables) {
+  $output = '';
+
+  // Render the label, if it's not hidden.
+  if (!$variables['label_hidden']) {
+    $output .= '<h2 class="field-label">' . $variables['label'] . ': </h2>';
+  }
+
+  // Render the items.
+  $output .= ($variables['element']['#label_display'] == 'inline') ? '<span class="links inline">' : '<span class="links">';
+  foreach ($variables['items'] as $delta => $item) {
+    $output .= '<span class="taxonomy-term-reference-' . $delta . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</span>';
+  }
+  $output .= '</span>';
+
+  // Render the top-level DIV.
+  $output = '<div class="' . $variables['classes'] . (!in_array('clearfix', $variables['classes_array']) ? ' clearfix' : '') . '">' . $output . '</div>';
+
+  return $output;
+}
+
 function get_age ( $birthday ) {
   $birthday_timestamp = strtotime($birthday);
 
