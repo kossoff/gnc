@@ -163,7 +163,7 @@
     <?php endif; ?>
   </p>
   <?php if (!empty($content['body'])): ?>
-    <p>Рекомендации: <?php print render($content['body']); ?></p>
+    <p>Рекомендации: <?php print render($content['field_cathz_tips']); ?></p>
   <?php endif; ?>
   <p>
     Врач-реаниматолог: <?php print render($content['field_doctor']); ?>
