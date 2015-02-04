@@ -144,10 +144,10 @@
       if (!$node->field_cathz_difficulties['und'][0]['value'])
         print render($content['field_cathz_difficulties']);
       else
-        print render($content['field_cathz_difficulties_list']);
+        print 'были, '. render($content['field_cathz_difficulties']) . render($content['field_cathz_difficulties_list']);
     ?>.
     Осложнения во время процедуры &mdash;
-    <?php if($node->field_cathz_compl_early['und'][0]['value'] == 0 && $node->field_cathz_compl_late['und'][0]['value'] == 0 ): ?>
+    <?php if(!isset($node->field_cathz_compl_early[LANGUAGE_NONE]) && !isset($node->field_cathz_compl_late[LANGUAGE_NONE])): ?>
       нет.
     <?php else: ?>
       <?php
@@ -162,9 +162,10 @@
       ?>.
     <?php endif; ?>
   </p>
-  <?php if (!empty($content['body'])): ?>
-    <p>Рекомендации: <?php print render($content['field_cathz_tips']); ?></p>
+  <?php if (!empty($content['field_cathz_tips'])): ?>
+    <p>Рекомендации: <?php print render($content['field_cathz_tips']); ?>.</p>
   <?php endif; ?>
+  <br />
   <p>
     Врач-реаниматолог: <?php print render($content['field_doctor']); ?>
     ________________________
