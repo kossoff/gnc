@@ -107,19 +107,70 @@
   </p>
   <p>
     Показатели перед катетеризацией:
-    лейкоциты <?php print render($content['field_pbc_leukocytes']); ?> x10^9/л,
-    тромбоциты <?php print render($content['field_pbc_thrombocytes']); ?> x10^9/л,
-    АЧТВ <?php print render($content['field_pbc_achtv']); ?> сек.,
-    ПИ <?php print render($content['field_pbc_pi']); ?> %,
-    FVIII <?php print render($content['field_pbc_f8']); ?> %.
-    Подготовка &mdash; <?php print render($content['field_cathz_preparation']); ?>.
+    <?php if (isset($node->field_pbc_leukocytes[LANGUAGE_NONE])): ?>
+      лейкоциты <?php print render($content['field_pbc_leukocytes']); ?> x10^9/л,
+    <?php endif; ?>
+    <?php if (isset($node->field_pbc_thrombocytes[LANGUAGE_NONE])): ?>
+      тромбоциты <?php print render($content['field_pbc_thrombocytes']); ?> x10^9/л,
+    <?php endif; ?>
+    <?php if (isset($node->field_pbc_achtv[LANGUAGE_NONE])): ?>
+      АЧТВ <?php print render($content['field_pbc_achtv']); ?> сек.,
+    <?php endif; ?>
+    <?php if (isset($node->field_pbc_pi[LANGUAGE_NONE])): ?>
+      ПИ <?php print render($content['field_pbc_pi']); ?> %,
+    <?php endif; ?>
+    <?php if (isset($node->field_pbc_f8[LANGUAGE_NONE])): ?>
+      FVIII <?php print render($content['field_pbc_f8']); ?> %,
+    <?php endif; ?>
+    <?php if (isset($node->field_pbc_fibrinogen[LANGUAGE_NONE])): ?>
+      фибриноген <?php print render($content['field_pbc_fibrinogen']); ?> г/л
+    <?php endif; ?>.
+
     <?php if($node->field_cathz_preparation['und'][0]['value']): ?>
+      Подготовка &mdash;
+      <?php if (isset($node->field_preparation_szp[LANGUAGE_NONE])): ?>
+        СЗП <?php print render($content['field_preparation_szp']) . ', '; ?>
+      <?php endif; ?>
+      <?php if (isset($node->field_preparation_thrombocyte[LANGUAGE_NONE])): ?>
+        тромбоциты: <?php print render($content['field_preparation_thrombocyte']) . ' доз, '; ?>
+      <?php endif; ?>
+      <?php if (isset($node->field_preparation_krio[LANGUAGE_NONE])): ?>
+        КРИО <?php print render($content['field_preparation_krio']) . ', '; ?>
+      <?php endif; ?>
+      <?php if (isset($node->field_preparation_protromplex[LANGUAGE_NONE])): ?>
+        протромплекс <?php print render($content['field_preparation_protromplex']) . ' ед., '; ?>
+      <?php endif; ?>
+      <?php if (isset($node->field_preparation_f8[LANGUAGE_NONE])): ?>
+        FVIII <?php print render($content['field_preparation_f8']) . ' ед., '; ?>
+      <?php endif; ?>
+      <?php if (isset($node->field_preparation_f7[LANGUAGE_NONE])): ?>
+        FVII <?php print render($content['field_preparation_f7']) . ' ед., '; ?>
+      <?php endif; ?>
+      <?php if (isset($node->field_preparation_additional[LANGUAGE_NONE])): ?>
+        <?php print render($content['field_preparation_additional']); ?>
+      <?php endif; ?>
+      .
       Результат подготовки:
-      лейкоциты <?php print render($content['field_cpr_leukocytes']); ?> x10^9/л,
-      тромбоциты <?php print render($content['field_cpr_thrombocytes']); ?> x10^9/л,
-      АЧТВ <?php print render($content['field_cpr_achtv']); ?> сек.,
-      ПИ <?php print render($content['field_cpr_pi']); ?> %,
-      FVIII <?php print render($content['field_cpr_f8']); ?> %.
+      <?php if (isset($node->field_pap_leukocytes[LANGUAGE_NONE])): ?>
+        лейкоциты <?php print render($content['field_pap_leukocytes']); ?> x10^9/л,
+      <?php endif; ?>
+      <?php if (isset($node->field_pap_thrombocytes[LANGUAGE_NONE])): ?>
+        тромбоциты <?php print render($content['field_pap_thrombocytes']); ?> x10^9/л,
+      <?php endif; ?>
+      <?php if (isset($node->field_pap_achtv[LANGUAGE_NONE])): ?>
+        АЧТВ <?php print render($content['field_pap_achtv']); ?> сек.,
+      <?php endif; ?>
+      <?php if (isset($node->field_pap_pi[LANGUAGE_NONE])): ?>
+        ПИ <?php print render($content['field_pap_pi']); ?> %,
+      <?php endif; ?>
+      <?php if (isset($node->field_pap_f8[LANGUAGE_NONE])): ?>
+        FVIII <?php print render($content['field_pap_f8']); ?> %,
+      <?php endif; ?>
+      <?php if (isset($node->field_pap_fibrinogen[LANGUAGE_NONE])): ?>
+        фибриноген <?php print render($content['field_pap_fibrinogen']); ?> г/л
+      <?php endif; ?>.
+    <?php else: ?>
+      Без подготовки.
     <?php endif; ?>
   </p>
   <p>
@@ -144,13 +195,15 @@
       if (!$node->field_cathz_difficulties['und'][0]['value'])
         print render($content['field_cathz_difficulties']);
       else
-        print 'были, '. render($content['field_cathz_difficulties']) . render($content['field_cathz_difficulties_list']);
+        print 'были, ' . render($content['field_cathz_difficulties_list']);
     ?>.
     Осложнения во время процедуры &mdash;
     <?php if(!isset($node->field_cathz_compl_early[LANGUAGE_NONE]) && !isset($node->field_cathz_compl_late[LANGUAGE_NONE])): ?>
       нет.
     <?php else: ?>
       <?php
+        if ($node->field_cathz_compl_early['und'][0]['value'] == 0 && $node->field_cathz_compl_late['und'][0]['value'] == 0)
+          print 'нет';
         if ($node->field_cathz_compl_early['und'][0]['value'] != 0)
           print render($content['field_cathz_compl_early']);
 
