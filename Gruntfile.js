@@ -16,8 +16,8 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
-          outputStyle: 'compressed',
-          includePaths: ['<%= global_vars.theme_scss %>', require('node-bourbon').includePaths]
+          style: 'compressed',
+          // includePaths: ['<%= global_vars.theme_scss %>', require('node-bourbon').includePaths]
         },
         files: {
           '<%= global_vars.theme_css %>/<%= global_vars.theme_name %>.css': '<%= global_vars.theme_scss %>/<%= global_vars.theme_name %>.scss'
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
