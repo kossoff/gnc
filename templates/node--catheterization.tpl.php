@@ -127,24 +127,24 @@
     <?php endif; ?>.
 
     <?php if($node->field_cathz_preparation['und'][0]['value']): ?>
-      Подготовка &mdash;
+      Подготовка:&ensp;
       <?php if (isset($node->field_preparation_szp[LANGUAGE_NONE])): ?>
-        СЗП <?php print render($content['field_preparation_szp']) . ', '; ?>
+        СЗП &mdash; <?php print render($content['field_preparation_szp']) . ', '; ?>
       <?php endif; ?>
       <?php if (isset($node->field_preparation_thrombocyte[LANGUAGE_NONE])): ?>
-        тромбоциты: <?php print render($content['field_preparation_thrombocyte']) . ' доз, '; ?>
+        тромбоциты &mdash; <?php print render($content['field_preparation_thrombocyte']) . ' доз, '; ?>
       <?php endif; ?>
       <?php if (isset($node->field_preparation_krio[LANGUAGE_NONE])): ?>
-        КРИО <?php print render($content['field_preparation_krio']) . ', '; ?>
+        КРИО &mdash; <?php print render($content['field_preparation_krio']) . ', '; ?>
       <?php endif; ?>
       <?php if (isset($node->field_preparation_protromplex[LANGUAGE_NONE])): ?>
-        протромплекс <?php print render($content['field_preparation_protromplex']) . ' ед., '; ?>
+        протромплекс &mdash; <?php print render($content['field_preparation_protromplex']) . ' ед., '; ?>
       <?php endif; ?>
       <?php if (isset($node->field_preparation_f8[LANGUAGE_NONE])): ?>
-        FVIII <?php print render($content['field_preparation_f8']) . ' ед., '; ?>
+        FVIII &mdash; <?php print render($content['field_preparation_f8']) . ' ед., '; ?>
       <?php endif; ?>
       <?php if (isset($node->field_preparation_f7[LANGUAGE_NONE])): ?>
-        FVII <?php print render($content['field_preparation_f7']) . ' ед., '; ?>
+        FVII &mdash; <?php print render($content['field_preparation_f7']) . ' ед., '; ?>
       <?php endif; ?>
       <?php if (isset($node->field_preparation_additional[LANGUAGE_NONE])): ?>
         <?php print render($content['field_preparation_additional']); ?>
