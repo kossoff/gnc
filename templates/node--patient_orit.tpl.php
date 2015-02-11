@@ -81,6 +81,7 @@
     $droplink = '?field_patient_reference=' . $node->nid . '&destination=/node/' . $node->nid;
 
     // We hide the comments and links now so that we can render them later.
+
     hide($content['field_surname']);
     hide($content['field_name']);
     hide($content['field_patronymic']);
@@ -97,50 +98,61 @@
     hide($content['field_view_misc']);
   ?>
 
-  <div class="panel patient-info clearfix">
-    <div class="left">
-      <?php if ($display_submitted): ?>
-        <div class="posted">
-          <?php if ($user_picture): ?>
-            <?php print $user_picture; ?>
-          <?php endif; ?>
-          <?php print $submitted; ?>
+  <div class="panel patient-info">
+    <div class="clearfix">
+      <div class="left">
+          <div class="posted">
+            <?php print $submitted; ?>
+          </div>
+        <?php print render($title_prefix); ?>
+          <h2<?php print $title_attributes; ?>>
+            <?php if (!$page): ?>
+              <a href="<?php print $node_url; ?>">
+            <?php endif; ?>
+            <i class="fi-torso"></i>
+            <?php print $node->field_surname['und'][0]['value'] . ' '
+              . $node->field_name['und'][0]['value'] . ' '
+              . $node->field_patronymic['und'][0]['value']; ?>
+            <?php if (!$page): ?>
+              </a>
+            <?php endif; ?></h2>
+        <?php print render($title_suffix); ?>
+        <div class="age">Возраст: <strong><?php print get_age($node->field_birthdate['und'][0]['value']); ?></strong> лет.
+          <?php print render($content['field_birthdate']); ?>
         </div>
-      <?php endif; ?>
-      <?php print render($title_prefix); ?>
-        <h2<?php print $title_attributes; ?>>
-          <?php if (!$page): ?>
-            <a href="<?php print $node_url; ?>">
-          <?php endif; ?>
-          <i class="fi-torso"></i>
-          <?php print $node->field_surname['und'][0]['value'] . ' '
-            . $node->field_name['und'][0]['value'] . ' '
-            . $node->field_patronymic['und'][0]['value']; ?>
-          <?php if (!$page): ?>
-            </a>
-          <?php endif; ?></h2>
-      <?php print render($title_suffix); ?>
-      <div class="age">Возраст: <strong><?php print get_age($node->field_birthdate['und'][0]['value']); ?></strong> лет.
-        <?php print render($content['field_birthdate']); ?>
+        <div class="diagnosis">Диагноз:
+          <?php
+            if (isset($node->field_diagnosis_ultimate[LANGUAGE_NONE]))
+              print render($content['field_diagnosis_ultimate']);
+            else
+              print render($content['field_diagnosis_choice']);
+          ?>
+        </div>
+        <div class="ib-num">И/б № <strong><?php print $node->field_medical_history_number['und'][0]['value']; ?></strong></div>
       </div>
-      <div class="diagnosis">Диагноз: <?php print render($content['field_hospitalization_diagnosis']); ?></div>
-      <div class="ib-num">И/б № <strong><?php print $node->field_medical_history_number['und'][0]['value']; ?></strong></div>
+      <ul class="button-group right">
+        <li><a href="/node/add/hospitalization<?php print $droplink; ?>" class="button small secondary"><i class="fi-plus"></i>&nbsp;Госпитализация</a></li>
+        <li><a href="#" class="button small secondary"><i class="fi-arrows-out"></i>&nbsp;Направления</a></li>
+        <li>
+          <a href="#" class="button small" data-dropdown="drop"><i class="fi-plus"></i> Добавить</a>
+          <ul id="drop" class="tiny f-dropdown" data-dropdown-content="">
+            <li><a href="/node/add/diagnosis<?php print $droplink; ?>"><i class="fi-page-copy"></i>&nbsp;Диагноз</a></li>
+            <li><a href="/node/add/diary<?php print $droplink; ?>"><i class="fi-calendar"></i>&nbsp;Дневник</a></li>
+            <li><a href="/node/add/ecg<?php print $droplink; ?>"><i class="fi-heart"></i>&nbsp;ЭКГ</a></li>
+            <li><a href="/node/add/summary-inspection<?php print $droplink; ?>"><i class="fi-page-multiple"></i>&nbsp;Эпикриз/Осмотр</a></li>
+            <li><a href="/node/add/miscellaneous<?php print $droplink; ?>"><i class="fi-asterisk"></i>&nbsp;Разное</a></li>
+            <li><a href="/node/add/catheterization<?php print $droplink; ?>"><i class="fi-first-aid"></i>&nbsp;Катетеризация</a></li>
+            <li><a href="/node/add/bronchoscopy<?php print $droplink; ?>"><i class="fi-magnifying-glass"></i>&nbsp;Бронхоскопия</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    <ul class="button-group right">
-      <li><a href="#" class="button small secondary"><i class="fi-arrows-out"></i>&nbsp;Направления</a></li>
-      <li>
-        <a href="#" class="button small right" data-dropdown="drop"><i class="fi-plus"></i> Добавить</a>
-        <ul id="drop" class="tiny f-dropdown" data-dropdown-content="">
-          <li><a href="/node/add/diagnosis<?php print $droplink; ?>"><i class="fi-page-copy"></i>&nbsp;Диагноз</a></li>
-          <li><a href="/node/add/diary<?php print $droplink; ?>"><i class="fi-calendar"></i>&nbsp;Дневник</a></li>
-          <li><a href="/node/add/ecg<?php print $droplink; ?>"><i class="fi-heart"></i>&nbsp;ЭКГ</a></li>
-          <li><a href="/node/add/summary-inspection<?php print $droplink; ?>"><i class="fi-page-multiple"></i>&nbsp;Эпикриз/Осмотр</a></li>
-          <li><a href="/node/add/miscellaneous<?php print $droplink; ?>"><i class="fi-asterisk"></i>&nbsp;Разное</a></li>
-          <li><a href="/node/add/catheterization<?php print $droplink; ?>"><i class="fi-first-aid"></i>&nbsp;Катетеризация</a></li>
-          <li><a href="/node/add/bronchoscopy<?php print $droplink; ?>"><i class="fi-magnifying-glass"></i>&nbsp;Бронхоскопия</a></li>
-        </ul>
-      </li>
-    </ul>
+
+    <?php print render($content['field_hospitalizations']); ?>
+    <?php if(isset($content['body'])): ?>
+      <hr />
+      <div id="body"><?php print render($content['body']); ?></div>
+    <?php endif; ?>
   </div>
 
   <div class="files">
@@ -189,7 +201,7 @@
       </dd>
     </dl>
   </div>
-
+<!--
   <?php print render($content); ?>
 
   <?php if (!empty($content['field_tags']) && !$is_front): ?>
@@ -198,5 +210,5 @@
 
   <?php print render($content['links']); ?>
   <?php print render($content['comments']); ?>
-
+-->
 </article>
