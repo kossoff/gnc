@@ -148,7 +148,7 @@
       </ul>
     </div>
 
-    <?php print render($content['field_hospitalizations']); ?>
+    <?php print render($content['field_view_hospitalizations']); ?>
     <?php if(isset($content['body'])): ?>
       <hr />
       <div id="body"><?php print render($content['body']); ?></div>
