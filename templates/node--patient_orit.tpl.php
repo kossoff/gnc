@@ -147,7 +147,7 @@
         </li>
       </ul>
     </div>
-
+    <hr />
     <?php print render($content['field_view_hospitalizations']); ?>
     <?php if(isset($content['body'])): ?>
       <hr />
