@@ -103,12 +103,14 @@
   </p>
   <p>
     В условиях <?php print render($content['field_in_conditions']); ?>
-    <?php if ($node->field_bronchoscopy_anesth['und'][0]['value'] == 0): ?>
-      без анестезии
-    <?php elseif($node->field_bronchoscopy_anesth['und'][0]['value'] == 1): ?>
-      под местной анестезией S. Lidocaini 0,5% <?php print render($content['field_bronchoscopy_anesth_val']); ?> мл.
-    <?php elseif($node->field_bronchoscopy_anesth['und'][0]['value'] == 2): ?>
-      под общей анестезией
+    <?php if (isset($node->field_bronchoscopy_anesth[LANGUAGE_NONE])): ?>
+      <?php if ($node->field_bronchoscopy_anesth['und'][0]['value'] == 0): ?>
+        без анестезии
+      <?php elseif($node->field_bronchoscopy_anesth['und'][0]['value'] == 1): ?>
+        под местной анестезией S. Lidocaini 0,5% <?php print render($content['field_bronchoscopy_anesth_val']); ?> мл.
+      <?php elseif($node->field_bronchoscopy_anesth['und'][0]['value'] == 2): ?>
+        под общей анестезией
+      <?php endif; ?>
     <?php endif; ?>
     через <?php print render($content['field_bronchoscope']); ?>
     выполнена ФБС.
