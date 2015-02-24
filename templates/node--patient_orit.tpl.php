@@ -128,7 +128,7 @@
               print render($content['field_diagnosis_choice']);
           ?>
         </div>
-        <div class="ib-num">И/б № <strong><?php print $node->field_medical_history_number['und'][0]['value']; ?></strong></div>
+        <div class="ib-num">И/б № <strong><?php print $node->field_medical_history_number['und'][0]['value']; ?> / <?php print render($content['field_medical_history_year']); ?></strong></div>
       </div>
       <ul class="button-group right">
         <li><a href="/node/add/hospitalization<?php print $droplink; ?>" class="button small secondary"><i class="fi-plus"></i>&nbsp;Госпитализация</a></li>
