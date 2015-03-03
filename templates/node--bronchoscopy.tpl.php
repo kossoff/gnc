@@ -96,10 +96,11 @@
     История болезни №<?php print $patient->field_medical_history_number['und'][0]['value']; ?>.
     Диагноз:
     <?php
-      $display = array('label' => 'hidden' );
-      $output = field_view_field('node', $patient, 'field_hospitalization_diagnosis', $display);
-      print render($output);
-     ?>.
+      if (isset($node->field_diagnosis_ultimate[LANGUAGE_NONE]))
+        print render($content['field_diagnosis_ultimate']);
+      else
+        print render($content['field_diagnosis_choice']);
+    ?>.
   </p>
   <p>
     В условиях <?php print render($content['field_in_conditions']); ?>

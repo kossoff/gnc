@@ -94,12 +94,13 @@
      ?>
     Возраст: <?php print get_age_at_date($patient->field_birthdate['und'][0]['value'], $node->field_datetime['und'][0]['value']); ?> лет.
     История болезни №<?php print $patient->field_medical_history_number['und'][0]['value']; ?>.
-    Диагноз
+    Диагноз:
     <?php
-      $display = array('label' => 'hidden' );
-      $output = field_view_field('node', $patient, 'field_hospitalization_diagnosis', $display);
-      print render($output);
-     ?>.
+      if (isset($node->field_diagnosis_ultimate[LANGUAGE_NONE]))
+        print render($content['field_diagnosis_ultimate']);
+      else
+        print render($content['field_diagnosis_choice']);
+    ?>.
   </p>
   <p>
     Показание к катетеризации &mdash; <?php print render($content['field_indications4catheteriz']); ?>.
