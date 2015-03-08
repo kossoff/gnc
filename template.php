@@ -81,7 +81,7 @@ function gnc_field__taxonomy_term_reference($variables) {
 
   // Render the label, if it's not hidden.
   if (!$variables['label_hidden']) {
-    $output .= '<h2 class="field-label">' . $variables['label'] . ': </h2>';
+    $output .= '<div class="field-label">' . $variables['label'] . ': </div>';
   }
 
   // Render the items.
