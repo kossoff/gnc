@@ -5,3 +5,6 @@ robots.txt
 node_modules
 .bin
 bower_components
+*.sublime-*
+*.DS_Store
+*~
