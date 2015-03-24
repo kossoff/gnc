@@ -158,13 +158,13 @@
 
   <div class="files">
     <dl class="accordion" data-accordion>
-      <dd>
+      <dd class="accordion-navigation">
         <a href="#anesth"><i class="fi-page-filled"></i>&nbsp;Анестезии</a>
         <div class="content" id="anesth">
           <?php print render($content['field_view_anesth']); ?>
         </div>
       </dd>
-      <dd>
+      <dd class="accordion-navigation">
         <a href="#broncho"><i class="fi-magnifying-glass"></i>&nbsp;Бронхоскопии</a>
         <div class="content" id="broncho">
           <?php print render($content['field_view_broncho']); ?>
@@ -176,31 +176,31 @@
           <?php print render($content['field_view_diagnoses']); ?>
         </div>
       </dd>
-      <dd>
+      <dd class="accordion-navigation">
         <a href="#diaries"><i class="fi-calendar"></i>&nbsp;Дневники</a>
         <div class="content" id="diaries">
           <?php print render($content['field_view_diaries']); ?>
         </div>
       </dd>
-      <dd>
+      <dd class="accordion-navigation">
         <a href="#cateter"><i class="fi-first-aid"></i>&nbsp;Катетеризации</a>
         <div class="content" id="cateter">
           <?php print render($content['field_view_katet']); ?>
         </div>
       </dd>
-      <dd>
+      <dd class="accordion-navigation">
         <a href="#summarys"><i class="fi-page-multiple"></i>&nbsp;Эпикризы&Осмотры</a>
         <div class="content" id="summarys">
           <?php print render($content['field_view_summarys']); ?>
         </div>
       </dd>
-      <dd>
+      <dd class="accordion-navigation">
         <a href="#ecgs"><i class="fi-heart"></i>&nbsp;ЭКГ</a>
         <div class="content" id="ecgs">
           <?php print render($content['field_view_ecgs']); ?>
         </div>
       </dd>
-      <dd>
+      <dd class="accordion-navigation">
         <a href="#misc"><i class="fi-asterisk"></i>&nbsp;Разное</a>
         <div class="content" id="misc">
           <?php print render($content['field_view_misc']); ?>
