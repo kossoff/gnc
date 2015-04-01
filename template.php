@@ -86,8 +86,16 @@ function gnc_field__taxonomy_term_reference($variables) {
 
   // Render the items.
   $output .= ($variables['element']['#label_display'] == 'inline') ? '<span class="links links-inline">' : '<span class="links">';
+
+  $items_total = count($variables['items']);
+  $items_counter = 1;
   foreach ($variables['items'] as $delta => $item) {
     $output .= '<span class="taxonomy-term-reference-' . $delta . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</span>';
+
+    if ($items_counter < $items_total){
+      $output .= ", ";
+      $items_counter++;
+    }
   }
   $output .= '</span>';
 
