@@ -44,7 +44,7 @@ function gnc_field($variables) {
 
   // Render the label, if it's not hidden.
   if (!$variables['label_hidden']) {
-    $output .= '<div ' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</div>';
+    $output .= '<span ' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</span>';
   }
 
   // Quick Edit module requires some extra wrappers to work.
@@ -81,11 +81,11 @@ function gnc_field__taxonomy_term_reference($variables) {
 
   // Render the label, if it's not hidden.
   if (!$variables['label_hidden']) {
-    $output .= '<div class="field-label">' . $variables['label'] . ':&nbsp;</div>';
+    $output .= '<span class="field-label">' . $variables['label'] . ':&nbsp;</span>';
   }
 
   // Render the items.
-  $output .= ($variables['element']['#label_display'] == 'inline') ? '<span class="links inline">' : '<span class="links">';
+  $output .= ($variables['element']['#label_display'] == 'inline') ? '<span class="links links-inline">' : '<span class="links">';
   foreach ($variables['items'] as $delta => $item) {
     $output .= '<span class="taxonomy-term-reference-' . $delta . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</span>';
   }
