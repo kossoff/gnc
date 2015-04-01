@@ -129,7 +129,12 @@
  -->
         <?php if ($title): ?>
           <?php print render($title_prefix); ?>
-          <h1 id="page-title" class="title"><?php print $title; ?></h1>
+          <h1 id="page-title" class="title
+            <?php
+              if ( isset ($node) )
+                if ($node->type == 'anesthesia' || $node->type == 'bronchoscopy')
+                  print 'hide';
+            ?>"><?php print $title; ?></h1>
           <?php print render($title_suffix); ?>
         <?php endif; ?>
 
