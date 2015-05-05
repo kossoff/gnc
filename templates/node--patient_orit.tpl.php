@@ -141,6 +141,7 @@
             <li><a href="/node/add/diagnosis<?php print $droplink; ?>"><i class="fi-page-copy"></i>&nbsp;Диагноз</a></li>
             <li><a href="/node/add/diary<?php print $droplink; ?>"><i class="fi-calendar"></i>&nbsp;Дневник</a></li>
             <li><a href="/node/add/catheterization<?php print $droplink; ?>"><i class="fi-first-aid"></i>&nbsp;Катетеризация</a></li>
+            <li><a href="/node/add/tracheostomy<?php print $droplink; ?>"><i class="fi-first-aid"></i>&nbsp;Трахеостомия</a></li>
             <li><a href="/node/add/ecg<?php print $droplink; ?>"><i class="fi-heart"></i>&nbsp;ЭКГ</a></li>
             <li><a href="/node/add/summary-inspection<?php print $droplink; ?>"><i class="fi-page-multiple"></i>&nbsp;Эпикриз/Осмотр</a></li>
             <li><a href="/node/add/miscellaneous<?php print $droplink; ?>"><i class="fi-asterisk"></i>&nbsp;Разное</a></li>
