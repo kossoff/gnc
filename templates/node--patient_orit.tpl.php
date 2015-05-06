@@ -78,7 +78,19 @@
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
 
   <?php
-    $droplink = '?field_patient_reference=' . $node->nid . '&destination=/node/' . $node->nid;
+    // prepopulate taxonomy field
+    // &edit[field_diagnosis_choice][und][tid]=tid
+    $diagnosis = field_get_items('node', $node, 'field_diagnosis_choice');
+    $diagnosis_tid = $diagnosis[0]['tid'];
+
+    $droplink = '?field_patient_reference='
+                  . $node->nid
+                  . '&destination=/node/'
+                  . $node->nid
+                  . '&edit[field_diagnosis_choice][und]['
+                  . $diagnosis_tid
+                  . ']='
+                  . $diagnosis_tid;
 
     // We hide the comments and links now so that we can render them later.
 
