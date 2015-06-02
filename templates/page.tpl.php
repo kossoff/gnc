@@ -125,15 +125,23 @@
 
         <a id="main-content"></a>
 
-<!--         <?php if ($breadcrumb): print $breadcrumb; endif; ?>
- -->
+        <?php /* if ($breadcrumb): print $breadcrumb; endif; */ ?>
         <?php if ($title): ?>
           <?php print render($title_prefix); ?>
           <h1 id="page-title" class="title
             <?php
               if ( isset ($node) )
-                if ($node->type == 'anesthesia' || $node->type == 'bronchoscopy')
-                  print 'hide';
+                switch ($node->type) {
+                  case 'anesthesia':
+                  case 'bronchoscopy':
+                  case 'tracheostomy':
+                  case 'catheterization':
+                    print 'hide';
+                    break;
+
+                  default:
+                    break;
+                }
             ?>"><?php print $title; ?></h1>
           <?php print render($title_suffix); ?>
         <?php endif; ?>
@@ -151,7 +159,7 @@
 
         <?php print render($page['content']); ?>
       </div>
-      <!--/.l-main region -->
+      <!--/.l-main region
 
       <?php if (!empty($page['sidebar_first'])): ?>
         <aside role="complementary" class="<?php print $sidebar_first_grid; ?> sidebar-first columns sidebar">
