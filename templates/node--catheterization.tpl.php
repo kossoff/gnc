@@ -189,8 +189,13 @@
     выполнена пункция и катетеризация <?php print render($content['field_cathz_vessel']); ?>.
     Всего предпринято попыток: <?php print render($content['field_cathz_number_attempts']); ?>.
     ЭКГ контроль положения катетера и высокий зубец P из правого предсердия (спайк) <?php print render($content['field_cathz_spike']); ?>.
-    Результат &mdash; <?php print render($content['field_cathz_result']); ?>.
-    Установлен катетер <?php print render($content['field_catheter']); ?>.
+    Результат &mdash; <?php print render($content['field_cathz_result']); ?>,
+    <?php
+      if ($node->field_cathz_result['und'][0]['value'] != 1 )
+        print "катетер не установлен";
+      else
+        print "установлен катетер" . render($content['field_catheter']);
+    ?>.
     Трудности при катетеризации &mdash;
     <?php
       if (!$node->field_cathz_difficulties['und'][0]['value'])
