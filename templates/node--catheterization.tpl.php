@@ -203,13 +203,13 @@
       нет.
     <?php else: ?>
       <?php
-        if ($node->field_cathz_compl_early[LANGUAGE_NONE][0]['value'] == 0 && $node->field_cathz_compl_late[LANGUAGE_NONE][0]['value'] == 0)
+        if ($node->field_cathz_compl_early['und'][0]['value'] == 0 && $node->field_cathz_compl_late['und'][0]['value'] == 0)
           print 'нет';
         if ($node->field_cathz_compl_early[LANGUAGE_NONE][0]['value'] != 0)
           print render($content['field_cathz_compl_early']);
 
-        if ($node->field_cathz_compl_late[LANGUAGE_NONE][0]['value'] != 0){
-          if ($node->field_cathz_compl_early[LANGUAGE_NONE][0]['value'] != 0)
+        if ($node->field_cathz_compl_late['und'][0]['value'] != 0){
+          if ($node->field_cathz_compl_early['und'][0]['value'] != 0)
             print ", ";
           print render($content['field_cathz_compl_late']);
         }
