@@ -31,8 +31,8 @@
  */
 function gnc_form_alter(&$form, &$form_state, $form_id) {
   //  для отладки форм
-   // drupal_set_message('<pre>' . print_r($form, TRUE) . '</pre>');
-  $form['search']['#size'] = 125;
+  //drupal_set_message('<pre>' . print_r($form, TRUE) . '</pre>');
+  $form['search']['#size'] = 110;
   // $form['#info']['filter-search_api_views_fulltext']['label'] = 'Поиск по сайту';
   $form['search']['#attributes']['placeholder'] = t('Введите поисковый запрос');
   // $form['search']['#attributes']['class'][] = 'hide-for-touch';
