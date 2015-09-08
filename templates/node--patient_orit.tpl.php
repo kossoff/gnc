@@ -108,6 +108,7 @@
     hide($content['field_view_directions']);
     hide($content['field_view_summarys']);
     hide($content['field_view_misc']);
+    hide($content['field_view_trach']);
   ?>
 
   <div class="panel patient-info">
@@ -199,6 +200,12 @@
         <a href="#cateter"><i class="fi-first-aid"></i>&nbsp;Катетеризации</a>
         <div class="content" id="cateter">
           <?php print render($content['field_view_katet']); ?>
+        </div>
+      </dd>
+      <dd class="accordion-navigation">
+        <a href="#trach"><i class="fi-first-aid"></i>&nbsp;Трахеостомии</a>
+        <div class="content" id="trach">
+          <?php print render($content['field_view_trach']); ?>
         </div>
       </dd>
       <dd class="accordion-navigation">
