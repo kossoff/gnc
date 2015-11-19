@@ -114,7 +114,7 @@
       <?php endif; ?>
     <?php endif; ?>
     через <?php print render($content['field_bronchoscope']); ?>
-    выполнена ФБС.
+    выполнена ФБС (бронхоскоп №<?php print render($content['field_bronchoscope_number']); ?>).
   </p>
   <p>
     <?php if($node->field_bal['und'][0]['value']): ?>

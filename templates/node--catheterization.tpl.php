@@ -194,7 +194,7 @@
       if ($node->field_cathz_result['und'][0]['value'] != 1 )
         print "катетер не установлен";
       else
-        print "установлен катетер" . render($content['field_catheter']);
+        print "установлен катетер " . render($content['field_catheter']);
     ?>.
     Трудности при катетеризации &mdash;
     <?php
