@@ -121,7 +121,7 @@ else
       if ($node->field_cathz_result['und'][0]['value'] != 1 )
         print "катетер не установлен";
       else
-        print "установлен катетер " . render($content['field_catheter']);
+        print "установлен катетер " . render($content['field_catheter']) . render($content['field_catheter_other']);
     ?>.
     Трудности при катетеризации &mdash;
     <?php
@@ -156,7 +156,7 @@ else
     Врач-реаниматолог: <?php print render($content['field_doctor']); ?>
     ________________________
   </p>
-
+<?php print render($content['field_image']); ?>
 <!--
    <?php if ($display_submitted): ?>
     <div class="posted">
