@@ -8,8 +8,8 @@
 
     $droplink = '?field_patient_reference='
                   . $node->nid
-                  . '&destination=/node/'
-                  . $node->nid
+                  //. '&destination=/node/'
+                  //. $node->nid
                   . '&edit[field_diagnosis_choice][und]['
                   . $diagnosis_tid
                   . ']='
